@@ -1,0 +1,6 @@
+{
+  "name": "VERVE — Gen Z Lifestyle & Culture",
+  "description": "A modern editorial digital magazine for Gen Z exploring student life, personal growth, career, culture, and technology.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
