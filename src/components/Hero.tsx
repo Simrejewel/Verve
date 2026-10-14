@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             <h1 className="hero-title">
               <a
-                href={`#/article/${article.slug}`}
+                href={`/${article.slug}`}
                 onClick={(e) => {
                   e.preventDefault();
                   onReadArticle(article);

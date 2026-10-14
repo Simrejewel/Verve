@@ -36,7 +36,7 @@ export const TrendingStrip: React.FC<TrendingStripProps> = ({ articles, onSelect
                 </span>
                 <h3 className="trending-card-title">
                   <a
-                    href={`#/article/${article.slug}`}
+                    href={`/${article.slug}`}
                     onClick={(e) => {
                       e.preventDefault();
                       onSelectArticle(article);

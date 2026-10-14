@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Col */}
           <div className="footer-brand-col">
             <a
-              href="#home"
+              href="/"
               onClick={(e) => {
                 e.preventDefault();
                 onSelectCategory('All');
@@ -42,32 +42,32 @@ export const Footer: React.FC<FooterProps> = ({
             <h5>Sections</h5>
             <ul className="footer-links">
               <li>
-                <a href="#/category/lifestyle" onClick={(e) => { e.preventDefault(); onSelectCategory('Lifestyle'); }}>
+                <a href="/lifestyle" onClick={(e) => { e.preventDefault(); onSelectCategory('Lifestyle'); }}>
                   Lifestyle
                 </a>
               </li>
               <li>
-                <a href="#/category/student-life" onClick={(e) => { e.preventDefault(); onSelectCategory('Student Life'); }}>
+                <a href="/student-life" onClick={(e) => { e.preventDefault(); onSelectCategory('Student Life'); }}>
                   Student Life
                 </a>
               </li>
               <li>
-                <a href="#/category/personal-growth" onClick={(e) => { e.preventDefault(); onSelectCategory('Personal Growth'); }}>
+                <a href="/personal-growth" onClick={(e) => { e.preventDefault(); onSelectCategory('Personal Growth'); }}>
                   Personal Growth
                 </a>
               </li>
               <li>
-                <a href="#/category/technology" onClick={(e) => { e.preventDefault(); onSelectCategory('Technology'); }}>
+                <a href="/technology" onClick={(e) => { e.preventDefault(); onSelectCategory('Technology'); }}>
                   Technology & AI
                 </a>
               </li>
               <li>
-                <a href="#/category/culture" onClick={(e) => { e.preventDefault(); onSelectCategory('Culture'); }}>
+                <a href="/culture" onClick={(e) => { e.preventDefault(); onSelectCategory('Culture'); }}>
                   Culture & Society
                 </a>
               </li>
               <li>
-                <a href="#/category/career" onClick={(e) => { e.preventDefault(); onSelectCategory('Career'); }}>
+                <a href="/career" onClick={(e) => { e.preventDefault(); onSelectCategory('Career'); }}>
                   Career & Money
                 </a>
               </li>
@@ -79,19 +79,22 @@ export const Footer: React.FC<FooterProps> = ({
             <h5>Publication</h5>
             <ul className="footer-links">
               <li>
-                <a href="#/about" onClick={(e) => { e.preventDefault(); onSelectCategory('About'); }}>
+                <a href="/about" onClick={(e) => { e.preventDefault(); onSelectCategory('About'); }}>
                   About & Manifesto
                 </a>
               </li>
               <li>
-                <a href="#/contact" onClick={(e) => { e.preventDefault(); onSelectCategory('Contact'); }}>
+                <a href="/contact" onClick={(e) => { e.preventDefault(); onSelectCategory('Contact'); }}>
                   Pitch a Story
                 </a>
               </li>
               <li>
-                <a href="#newsletter" onClick={(e) => { e.preventDefault(); onOpenNewsletter(); }}>
+                <button
+                  onClick={onOpenNewsletter}
+                  style={{ textAlign: 'left', color: 'var(--text-secondary)', fontSize: '0.875rem' }}
+                >
                   The Sunday Dispatch
-                </a>
+                </button>
               </li>
               <li>
                 <button
@@ -102,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <a href="#careers" onClick={(e) => { e.preventDefault(); onSelectCategory('Contact'); }}>
+                <a href="/contact" onClick={(e) => { e.preventDefault(); onSelectCategory('Contact'); }}>
                   Fellowships & Internships
                 </a>
               </li>
@@ -148,15 +151,15 @@ export const Footer: React.FC<FooterProps> = ({
             © 2026 VERVE Editorial Media LLC. All rights reserved.
           </div>
           <div className="footer-bottom-links">
-            <a href="#privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Policy: VERVE respects your data privacy. We do not sell user data.'); }}>
+            <a href="/privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Policy: VERVE respects your data privacy. We do not sell user data.'); }}>
               Privacy Policy
             </a>
             <span aria-hidden="true">·</span>
-            <a href="#terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service: All articles are copyright to their respective contributing authors and VERVE.'); }}>
+            <a href="/terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service: All articles are copyright to their respective contributing authors and VERVE.'); }}>
               Terms of Service
             </a>
             <span aria-hidden="true">·</span>
-            <a href="#licensing" onClick={(e) => { e.preventDefault(); alert('Image Licensing: All images licensed via Unsplash/Pexels verified editorial licenses.'); }}>
+            <a href="/licensing" onClick={(e) => { e.preventDefault(); alert('Image Licensing: All images licensed via Unsplash/Pexels verified editorial licenses.'); }}>
               Image Licensing
             </a>
           </div>

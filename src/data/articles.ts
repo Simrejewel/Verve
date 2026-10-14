@@ -30,7 +30,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Unpack what matters at 18: personal growth, career experiments, money, and friendships without pressure. Read the honest guide and take control of your 20s today.',
       primaryKeyword: 'things I wish I knew at 18',
       secondaryKeywords: ['early adulthood advice', 'turning 18 tips', 'college transition', 'young adult life advice'],
-      canonicalSlug: '/article/things-i-wish-i-knew-at-18'
+      canonicalSlug: '/things-i-wish-i-knew-at-18'
     },
     introduction: [
       'Turning 18 is often presented as a finish line: suddenly you are legally an adult, independent, and expected to know what comes next. In reality, 18 is much closer to a starting point. You can be legally older without feeling emotionally, financially, or professionally ready for everything adulthood brings.',
@@ -127,7 +127,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Stop wasting your 20s with endless scrolling and passive waiting. Discover practical habits, build a real portfolio, and start reading our full roadmap now.',
       primaryKeyword: 'stop wasting your 20s',
       secondaryKeywords: ['twenties life advice', 'productivity for 20s', 'passive living', 'goal setting Gen Z'],
-      canonicalSlug: '/article/how-to-stop-wasting-your-20s'
+      canonicalSlug: '/how-to-stop-wasting-your-20s'
     },
     introduction: [
       'The phrase "don\'t waste your 20s" sounds motivating until it becomes another source of pressure. Your twenties are not a productivity competition. They are a decade in which you can explore, build skills, make mistakes, change direction, and discover what kind of life actually fits you.',
@@ -212,7 +212,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Navigate the reality of being a college student in 2026. Balance AI study tools, campus culture, internships, and mental wellbeing. Read the full story here.',
       primaryKeyword: 'college student in 2026',
       secondaryKeywords: ['modern student life', 'AI in university', 'campus trends 2026', 'student mental health'],
-      canonicalSlug: '/article/the-reality-of-being-a-college-student-in-2026'
+      canonicalSlug: '/the-reality-of-being-a-college-student-in-2026'
     },
     introduction: [
       'College in 2026 is no longer just about lectures, notes, exams, and a degree. Students are navigating a world where AI tools, creator culture, internships, personal branding, side projects, and online communities can shape opportunities alongside formal education.',
@@ -296,7 +296,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Learn how to build a personal brand as a student without corporate cringe. Document your real projects, gain credibility, and explore our step-by-step guide now.',
       primaryKeyword: 'personal brand as a student',
       secondaryKeywords: ['student personal branding', 'LinkedIn for students', 'portfolio building', 'early career reputation'],
-      canonicalSlug: '/article/how-to-build-a-personal-brand-as-a-student'
+      canonicalSlug: '/how-to-build-a-personal-brand-as-a-student'
     },
     introduction: [
       'A personal brand is not a logo, a fancy LinkedIn headline, or a feed filled with manufactured motivational quotes. At its simplest, a personal brand is simply the reputation and associations people have when they hear your name.',
@@ -380,7 +380,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Discover 10 skills that can actually make you money as a student or young freelancer. Master writing, editing, and automation. Start reading our practical guide.',
       primaryKeyword: 'skills that make money',
       secondaryKeywords: ['high income skills 20s', 'freelancing skills', 'monetizable student skills', 'remote digital work'],
-      canonicalSlug: '/article/10-skills-that-can-actually-make-you-money'
+      canonicalSlug: '/10-skills-that-can-actually-make-you-money'
     },
     introduction: [
       'The internet has created an exhausting list of "high-income skills," but the pragmatic question is much simpler: what can you become good enough at that another person or business will happily pay you money for?',
@@ -466,7 +466,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'See why everyone feels behind in their 20s and how social feeds distort progress. Reframe your personal milestones and read the full cultural analysis today.',
       primaryKeyword: 'feeling behind in your 20s',
       secondaryKeywords: ['twenties anxiety', 'comparison culture', 'quarter life crisis', 'Gen Z mental health'],
-      canonicalSlug: '/article/why-everyone-feels-behind-in-their-20s'
+      canonicalSlug: '/why-everyone-feels-behind-in-their-20s'
     },
     introduction: [
       'There is a strange contradiction in your twenties: you may possess more autonomy and flexibility than you ever had, yet feel less certain about who you are. A major driver is that contemporary digital life makes constant comparison almost inescapable.',
@@ -550,7 +550,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Master how to make friends after college when organic campus routines end. Discover recurring hobbies, low-pressure plans, and explore our complete guide today.',
       primaryKeyword: 'make friends after college',
       secondaryKeywords: ['adult friendships', 'loneliness in 20s', 'community after university', 'social life Gen Z'],
-      canonicalSlug: '/article/how-to-make-friends-after-college'
+      canonicalSlug: '/how-to-make-friends-after-college'
     },
     introduction: [
       'Making friends after college can feel unexpectedly isolating because friendship no longer happens on autopilot. Throughout school and university, proximity did the heavy lifting for you: you attended the same lectures, ate in the same dining halls, and bumped into familiar faces three times a day.',
@@ -634,7 +634,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Uncover the side hustle generation and how Gen Z builds financial optionality without burning out on extra work. Read the complete career breakdown right now.',
       primaryKeyword: 'side hustle generation',
       secondaryKeywords: ['Gen Z side hustle', 'creator economy', 'freelancing young adults', 'economic optionality'],
-      canonicalSlug: '/article/the-rise-of-the-side-hustle-generation'
+      canonicalSlug: '/the-rise-of-the-side-hustle-generation'
     },
     introduction: [
       'The side hustle has evolved from an occasional freelance gig into a pillar of modern youth culture. For some, it represents a crucial financial buffer against inflation and housing costs. For others, it is an outlet for artistic agency, a tech sandbox, or a trial run for an eventual full-time venture.',
@@ -717,7 +717,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'Find out if a digital detox really works for young adults. Learn realistic phone friction tactics, overcome scroll fatigue, and start reading the full essay now.',
       primaryKeyword: 'digital detox',
       secondaryKeywords: ['phone screen time habits', 'Gen Z attention span', 'social media break', 'intentional technology'],
-      canonicalSlug: '/article/digital-detox-does-it-actually-work'
+      canonicalSlug: '/digital-detox-does-it-actually-work'
     },
     introduction: [
       '"Digital detox" sounds alluringly cinematic, but in practice, our smartphones are our debit cards, transit passes, campus keycards, lecture schedules, and connection to loved ones. Complete abandonment is neither practical nor desirable.',
@@ -800,7 +800,7 @@ export const ARTICLES: Article[] = [
       metaDescription: 'See how AI is changing student life in 2026. Learn how to use smart study copilots without losing critical thinking. Read our complete campus report right now.',
       primaryKeyword: 'how AI is changing student life in 2026',
       secondaryKeywords: ['AI in university', 'student AI workflow', 'future of learning', 'academic integrity AI'],
-      canonicalSlug: '/article/how-ai-is-changing-student-life'
+      canonicalSlug: '/how-ai-is-changing-student-life'
     },
     introduction: [
       'AI has seamlessly integrated into daily student life, transforming how people conduct literature reviews, brainstorm creative angles, organize study guides, and digest dense academic papers. The defining question is no longer whether students should use AI—it is whether they can harness it without outsourcing the very cognition education is meant to cultivate.',

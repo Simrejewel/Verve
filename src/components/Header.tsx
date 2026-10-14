@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="container header-container">
           {/* Zone 1: Single text element wordmark */}
           <a
-            href="#home"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('All');
@@ -94,12 +94,12 @@ export const Header: React.FC<HeaderProps> = ({
             {navItems.map((item) => {
               const cleanHref =
                 item.value === 'All'
-                  ? '#'
+                  ? '/'
                   : item.value === 'About'
-                  ? '#/about'
+                  ? '/about'
                   : item.value === 'Contact'
-                  ? '#/contact'
-                  : `#/category/${item.value.toLowerCase().replace(/\s+/g, '-')}`;
+                  ? '/contact'
+                  : `/${item.value.toLowerCase().replace(/\s+/g, '-')}`;
 
               return (
                 <a

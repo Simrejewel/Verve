@@ -68,52 +68,58 @@ export default function App() {
     tag.setAttribute('content', content);
   };
 
-  // Sync hash routing with clean, readable URLs (/article/:slug, /category/:name, /about, /contact)
+  // Helper to parse location without any hashtags
+  const parseLocation = () => {
+    // If incoming URL has a hashtag, clean it up immediately
+    if (window.location.hash) {
+      const cleanSlug = window.location.hash.replace(/^#\/?/, '').replace(/^article\//, '');
+      const cleanPath = cleanSlug ? `/${cleanSlug}` : '/';
+      window.history.replaceState(null, '', cleanPath);
+    }
+
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    if (!path) {
+      return { article: null, category: 'All' as const };
+    }
+
+    if (path === 'about') {
+      return { article: null, category: 'About' as const };
+    }
+
+    if (path === 'contact') {
+      return { article: null, category: 'Contact' as const };
+    }
+
+    // Check if path is a category (e.g. /lifestyle, /student-life, etc.)
+    const catSegment = path.startsWith('category/') ? path.replace('category/', '') : path;
+    const matchedCategory = CATEGORIES.find(
+      (c) => c.toLowerCase().replace(/\s+/g, '-') === catSegment.toLowerCase()
+    );
+    if (matchedCategory) {
+      return { article: null, category: matchedCategory };
+    }
+
+    // Check if path is an article slug (e.g. /things-i-wish-i-knew-at-18)
+    const articleSlug = path.startsWith('article/') ? path.replace('article/', '') : path;
+    const matchedArticle = ARTICLES.find((a) => a.slug === articleSlug);
+    if (matchedArticle) {
+      return { article: matchedArticle, category: matchedArticle.category };
+    }
+
+    return { article: null, category: 'All' as const };
+  };
+
+  // Sync clean, simple, hashtag-free URLs
   useEffect(() => {
-    const handleHashChange = () => {
-      let hash = window.location.hash.replace(/^#\/?/, '');
-      if (!hash) {
-        setActiveArticle(null);
-        setSelectedCategory('All');
-        return;
-      }
-
-      if (hash === 'about') {
-        setSelectedCategory('About');
-        setActiveArticle(null);
-        return;
-      }
-
-      if (hash === 'contact') {
-        setSelectedCategory('Contact');
-        setActiveArticle(null);
-        return;
-      }
-
-      if (hash.startsWith('category/')) {
-        const catSlug = hash.replace('category/', '').toLowerCase();
-        const matched = CATEGORIES.find(
-          (c) => c.toLowerCase().replace(/\s+/g, '-') === catSlug
-        );
-        if (matched) {
-          setSelectedCategory(matched);
-          setActiveArticle(null);
-          return;
-        }
-      }
-
-      const slug = hash.startsWith('article/') ? hash.replace('article/', '') : hash;
-      const found = ARTICLES.find((a) => a.slug === slug);
-      if (found) {
-        setActiveArticle(found);
-      } else {
-        setActiveArticle(null);
-      }
+    const handleUrlChange = () => {
+      const { article, category } = parseLocation();
+      setActiveArticle(article);
+      setSelectedCategory(category);
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleUrlChange();
+    window.addEventListener('popstate', handleUrlChange);
+    return () => window.removeEventListener('popstate', handleUrlChange);
   }, []);
 
   // Update document title and OpenGraph metadata dynamically
@@ -163,18 +169,23 @@ export default function App() {
     });
   };
 
+  const navigateTo = (path: string) => {
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, '', path);
+    }
+  };
+
   const handleSelectArticle = (article: Article) => {
-    window.location.hash = `/article/${article.slug}`;
+    const cleanUrl = `/${article.slug}`;
+    navigateTo(cleanUrl);
     setActiveArticle(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToMagazine = () => {
-    window.location.hash = '';
+    navigateTo('/');
     setActiveArticle(null);
-    if (selectedCategory === 'About' || selectedCategory === 'Contact') {
-      setSelectedCategory('All');
-    }
+    setSelectedCategory('All');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -182,13 +193,13 @@ export default function App() {
     setSelectedCategory(cat);
     setActiveArticle(null);
     if (cat === 'About') {
-      window.location.hash = '/about';
+      navigateTo('/about');
     } else if (cat === 'Contact') {
-      window.location.hash = '/contact';
+      navigateTo('/contact');
     } else if (cat === 'All') {
-      window.location.hash = '';
+      navigateTo('/');
     } else {
-      window.location.hash = `/category/${cat.toLowerCase().replace(/\s+/g, '-')}`;
+      navigateTo(`/${cat.toLowerCase().replace(/\s+/g, '-')}`);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

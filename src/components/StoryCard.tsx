@@ -54,7 +54,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
 
         <h3 className="story-card-title">
           <a
-            href={`#/article/${article.slug}`}
+            href={`/${article.slug}`}
             onClick={(e) => {
               e.preventDefault();
               onSelectArticle(article);
