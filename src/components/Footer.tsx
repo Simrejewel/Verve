@@ -5,12 +5,14 @@ interface FooterProps {
   onSelectCategory: (cat: Category | 'All' | 'About' | 'Contact') => void;
   onOpenSEO: () => void;
   onOpenNewsletter: () => void;
+  onShowToast?: (msg: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onSelectCategory,
   onOpenSEO,
   onOpenNewsletter,
+  onShowToast,
 }) => {
   return (
     <footer className="site-footer">
@@ -151,15 +153,15 @@ export const Footer: React.FC<FooterProps> = ({
             © 2026 VERVE Editorial Media LLC. All rights reserved.
           </div>
           <div className="footer-bottom-links">
-            <a href="/privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Policy: VERVE respects your data privacy. We do not sell user data.'); }}>
+            <a href="/about" onClick={(e) => { e.preventDefault(); onShowToast ? onShowToast('Privacy Policy: VERVE respects reader privacy and never sells user data.') : onSelectCategory('About'); }}>
               Privacy Policy
             </a>
             <span aria-hidden="true">·</span>
-            <a href="/terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service: All articles are copyright to their respective contributing authors and VERVE.'); }}>
+            <a href="/about" onClick={(e) => { e.preventDefault(); onShowToast ? onShowToast('Terms of Service: All articles are copyright to their contributing authors and VERVE.') : onSelectCategory('About'); }}>
               Terms of Service
             </a>
             <span aria-hidden="true">·</span>
-            <a href="/licensing" onClick={(e) => { e.preventDefault(); alert('Image Licensing: All images licensed via Unsplash/Pexels verified editorial licenses.'); }}>
+            <a href="/about" onClick={(e) => { e.preventDefault(); onShowToast ? onShowToast('Image Licensing: Photographs are licensed via Unsplash/Pexels under editorial terms.') : onSelectCategory('About'); }}>
               Image Licensing
             </a>
           </div>

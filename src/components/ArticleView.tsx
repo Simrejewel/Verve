@@ -155,12 +155,15 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
             <div className="author-detail">
               <img
                 src={article.author.avatar}
-                alt={article.author.name}
+                alt={`Portrait of ${article.author.name}`}
                 className="author-detail-avatar"
                 width={44}
                 height={44}
                 loading="eager"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=70&fm=webp';
+                }}
               />
               <div className="author-detail-info">
                 <div className="author-detail-name">{article.author.name}</div>
@@ -189,12 +192,15 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
         <div className="article-hero-img-wrap">
           <img
             src={article.heroImage}
-            alt={article.imageAlt}
+            alt={article.imageAlt || `${article.title} featured editorial photograph`}
             className="article-hero-img"
             width={800}
             height={450}
             loading="eager"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=70&fm=webp';
+            }}
           />
         </div>
 
@@ -441,11 +447,14 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           <div className="author-bio-card">
             <img
               src={article.author.avatar}
-              alt={article.author.name}
+              alt={`Portrait of author ${article.author.name}`}
               className="author-bio-avatar"
               width={72}
               height={72}
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=70&fm=webp';
+              }}
             />
             <div className="author-bio-info">
               <h4>Written by {article.author.name}</h4>

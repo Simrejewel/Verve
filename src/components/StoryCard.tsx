@@ -24,12 +24,15 @@ export const StoryCard: React.FC<StoryCardProps> = ({
       >
         <img
           src={article.heroImage}
-          alt={article.imageAlt}
+          alt={article.imageAlt || `${article.title} cover image`}
           className="story-card-image"
           width={640}
           height={400}
           loading="lazy"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=70&fm=webp';
+          }}
         />
         <div style={{
           position: 'absolute',
@@ -68,13 +71,36 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           {article.deck}
         </p>
 
+        <div style={{ margin: '0.6rem 0 0.25rem' }}>
+          <a
+            href={`/${article.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectArticle(article);
+            }}
+            style={{
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              color: 'var(--accent-terracotta)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+            }}
+          >
+            Read Article &rarr;
+          </a>
+        </div>
+
         <div className="story-card-footer">
           <div className="author-mini">
             <img
               src={article.author.avatar}
-              alt={article.author.name}
+              alt={`Portrait of ${article.author.name}`}
               className="author-mini-avatar"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=70&fm=webp';
+              }}
             />
             <div>
               <span className="author-mini-name">{article.author.name}</span>

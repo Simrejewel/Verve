@@ -13,6 +13,7 @@ import { ContactView } from './components/ContactView';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { SEOModal } from './components/SEOModal';
 import { Footer } from './components/Footer';
+import { initGradientWaveText } from './utils/gradientWaveText';
 
 export default function App() {
   // Navigation & Page State
@@ -122,32 +123,112 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleUrlChange);
   }, []);
 
-  // Update document title and OpenGraph metadata dynamically
-  useEffect(() => {
-    let title = 'VERVE — Gen Z Lifestyle & Culture Magazine';
-    let description = 'VERVE is the premier Gen Z lifestyle and culture magazine. Read bold essays on student life, career growth, tech, and wellbeing. Discover latest stories now.';
-
+  // Comprehensive Page-Level SEO dictionary following checklist rules
+  const pageSeoData = useMemo(() => {
     if (activeArticle) {
-      title = activeArticle.seo.metaTitle;
-      description = activeArticle.seo.metaDescription;
-    } else if (selectedCategory === 'About') {
-      title = 'About & Manifesto: Independent Gen Z Magazine | VERVE';
-      description = 'Read the VERVE manifesto for Gen Z. Discover our independent mission covering student life, careers, culture, and tech. Explore our editorial team now.';
-    } else if (selectedCategory === 'Contact') {
-      title = 'Pitch a Story & Contact the Editorial Desk | VERVE';
-      description = 'Pitch a story to VERVE Magazine. We welcome original essays from students, creators, and young writers across the globe. Submit your story proposal now.';
-    } else if (selectedCategory !== 'All') {
-      title = `${selectedCategory}: Essays, Guides & Culture for Gen Z | VERVE`;
-      description = `Explore ${selectedCategory} essays and guides on VERVE. Candid advice on student survival, careers, modern culture, and tech. Start reading the collection now.`;
+      return {
+        metaTitle: activeArticle.seo.metaTitle,
+        metaDescription: activeArticle.seo.metaDescription,
+        primaryKeyword: activeArticle.seo.primaryKeyword,
+        secondaryKeywords: [
+          activeArticle.seo.secondaryKeywords[0] || 'youth culture',
+          activeArticle.seo.secondaryKeywords[1] || 'student life',
+        ],
+        canonicalSlug: activeArticle.seo.canonicalSlug,
+      };
     }
 
-    document.title = title;
-    updateHeadMeta('description', description);
-    updateHeadMeta('og:title', title, true);
-    updateHeadMeta('og:description', description, true);
-    updateHeadMeta('twitter:title', title);
-    updateHeadMeta('twitter:description', description);
+    const dict: Record<string, { metaTitle: string; metaDescription: string; primaryKeyword: string; secondaryKeywords: [string, string]; canonicalSlug: string }> = {
+      All: {
+        metaTitle: 'Gen Z Lifestyle & Culture Magazine: Student Life | VERVE',
+        metaDescription: 'Discover VERVE: the premier Gen Z lifestyle and culture magazine. Read bold guides on student life, career growth, tech, and wellbeing. Explore all stories now.',
+        primaryKeyword: 'Gen Z lifestyle and culture',
+        secondaryKeywords: ['student life advice', 'personal growth in 20s'],
+        canonicalSlug: '/',
+      },
+      About: {
+        metaTitle: 'Independent Gen Z Magazine: Editorial Manifesto | VERVE',
+        metaDescription: 'Read the VERVE manifesto for Gen Z. Discover our independent mission covering student life, careers, culture, and tech. Explore our editorial team right now.',
+        primaryKeyword: 'independent Gen Z magazine',
+        secondaryKeywords: ['youth culture publication', 'editorial manifesto'],
+        canonicalSlug: '/about',
+      },
+      Contact: {
+        metaTitle: 'Pitch a Story to Gen Z Blog: Contact the Desk | VERVE',
+        metaDescription: 'Pitch a story to VERVE Magazine. We welcome original essays from students, creators, and young writers across the globe. Submit your story proposal right now.',
+        primaryKeyword: 'pitch a story to Gen Z blog',
+        secondaryKeywords: ['contact editorial team', 'write for VERVE magazine'],
+        canonicalSlug: '/contact',
+      },
+      Lifestyle: {
+        metaTitle: 'Gen Z Lifestyle Trends: Wellbeing & Living Guides | VERVE',
+        metaDescription: 'Explore Gen Z lifestyle trends on VERVE. Discover candid guides on modern friendships, mental wellbeing, and balanced living. Read our full lifestyle series now.',
+        primaryKeyword: 'Gen Z lifestyle trends',
+        secondaryKeywords: ['young adult wellness', 'modern living guides'],
+        canonicalSlug: '/lifestyle',
+      },
+      'Student Life': {
+        metaTitle: 'College Student Guide: Campus Life & AI Advice | VERVE',
+        metaDescription: 'Read our college student guide for 2026. Master campus life, balanced study routines, AI tools, and early career choices. Start exploring student guides today.',
+        primaryKeyword: 'college student guide',
+        secondaryKeywords: ['campus life advice', 'higher education 2026'],
+        canonicalSlug: '/student-life',
+      },
+      'Personal Growth': {
+        metaTitle: 'Personal Growth in 20s: Mindset & Habit Guides | VERVE',
+        metaDescription: 'Master personal growth in 20s with actionable advice. Overcome passive scrolling, build lasting habits, and gain confidence. Start reading the complete guides.',
+        primaryKeyword: 'personal growth in 20s',
+        secondaryKeywords: ['self improvement Gen Z', 'twenties life advice'],
+        canonicalSlug: '/personal-growth',
+      },
+      Technology: {
+        metaTitle: 'Technology and AI for Students: Study & Detox | VERVE',
+        metaDescription: 'Explore technology and AI for students on VERVE. Discover how to use smart study copilots, manage screen time, and build tech focus. Read the tech essays now.',
+        primaryKeyword: 'technology and AI for students',
+        secondaryKeywords: ['digital detox tips', 'future of work Gen Z'],
+        canonicalSlug: '/technology',
+      },
+      Culture: {
+        metaTitle: 'Gen Z Culture and Society: Commentary & Trends | VERVE',
+        metaDescription: 'Unpack Gen Z culture and society with honest essays. Reframe social comparison, understand quarter-life pressures, and discover new culture stories today.',
+        primaryKeyword: 'Gen Z culture and society',
+        secondaryKeywords: ['quarter life crisis', 'youth media trends'],
+        canonicalSlug: '/culture',
+      },
+      Career: {
+        metaTitle: 'Early Career Skills: Freelance & Branding Guide | VERVE',
+        metaDescription: 'Build high-income early career skills on VERVE. Master freelancing, personal branding, and monetizable creative work. Explore our complete career roadmap now.',
+        primaryKeyword: 'early career skills',
+        secondaryKeywords: ['side hustle guide', 'student personal branding'],
+        canonicalSlug: '/career',
+      },
+    };
+
+    return dict[selectedCategory] || dict.All;
   }, [activeArticle, selectedCategory]);
+
+  // Update document title, meta description, keywords, and OpenGraph metadata dynamically
+  useEffect(() => {
+    const { metaTitle, metaDescription, primaryKeyword, secondaryKeywords } = pageSeoData;
+
+    document.title = metaTitle;
+    updateHeadMeta('description', metaDescription);
+    updateHeadMeta('keywords', `${primaryKeyword}, ${secondaryKeywords.join(', ')}`);
+    updateHeadMeta('og:title', metaTitle, true);
+    updateHeadMeta('og:description', metaDescription, true);
+    updateHeadMeta('twitter:title', metaTitle);
+    updateHeadMeta('twitter:description', metaDescription);
+  }, [pageSeoData]);
+
+  // Initialize Gradient Wave Text on the editorial quote element
+  useEffect(() => {
+    if (!activeArticle && selectedCategory === 'All' && !searchQuery.trim()) {
+      const cleanup = initGradientWaveText();
+      return () => {
+        if (cleanup) cleanup();
+      };
+    }
+  }, [activeArticle, selectedCategory, searchQuery]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -391,7 +472,16 @@ export default function App() {
             {selectedCategory === 'All' && !searchQuery.trim() && (
               <section className="quote-breakout-section">
                 <div className="container">
-                  <blockquote className="editorial-quote">
+                  <blockquote
+                    className="editorial-quote"
+                    data-gradient-wave-text
+                    data-gradient-wave-scroll-start="top 90%"
+                    data-gradient-wave-scroll-end="center 40%"
+                    data-gradient-wave-color-start="rgba(140, 136, 128, 0.28)"
+                    data-gradient-wave-color-wave="#c44d34"
+                    data-gradient-wave-duration="0.4"
+                    data-gradient-wave-scrub="0.1"
+                  >
                     “Adulthood does not arrive with an operating manual. You build your own by paying attention, staying curious, and making the next sensible move.”
                   </blockquote>
                   <cite className="quote-attribution">
@@ -429,6 +519,7 @@ export default function App() {
       {isSEOModalOpen && (
         <SEOModal
           article={activeArticle}
+          pageSeo={pageSeoData}
           onClose={() => setIsSEOModalOpen(false)}
           onCopyNotice={showToast}
         />
@@ -446,6 +537,7 @@ export default function App() {
       <Footer
         onSelectCategory={handleSelectCategory}
         onOpenSEO={() => setIsSEOModalOpen(true)}
+        onShowToast={showToast}
         onOpenNewsletter={() => {
           const el = document.getElementById('newsletter-section');
           if (el) {

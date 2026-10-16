@@ -27,12 +27,15 @@ export const Hero: React.FC<HeroProps> = ({
           >
             <img
               src={article.heroImage}
-              alt={article.imageAlt}
+              alt={article.imageAlt || `${article.title} cover story`}
               className="hero-media-image"
               width={800}
               height={500}
               loading="eager"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=70&fm=webp';
+              }}
             />
             <div className="hero-badge-kicker">
               Cover Story · Issue 28

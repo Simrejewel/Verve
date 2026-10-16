@@ -293,7 +293,7 @@ export const ARTICLES: Article[] = [
     imageAlt: 'Young creator working on a laptop at a bright studio desk reviewing creative designs',
     seo: {
       metaTitle: 'Build a Personal Brand as a Student: Step-by-Step Guide | VERVE',
-      metaDescription: 'Learn how to build a personal brand as a student without corporate cringe. Document your real projects, gain credibility, and explore our step-by-step guide now.',
+      metaDescription: 'Learn to build a personal brand as a student without corporate cringe. Document real projects, gain credibility, and explore our step-by-step guide now.',
       primaryKeyword: 'personal brand as a student',
       secondaryKeywords: ['student personal branding', 'LinkedIn for students', 'portfolio building', 'early career reputation'],
       canonicalSlug: '/how-to-build-a-personal-brand-as-a-student'
@@ -706,15 +706,15 @@ export const ARTICLES: Article[] = [
     publishDate: 'September 6, 2026',
     isoDate: '2026-09-06',
     readingTime: '5 min read',
-    heroImage: 'https://images.unsplash.com/photo-1508873696983-2df5703bc225?auto=format&fit=crop&w=800&q=70&fm=webp',
+    heroImage: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=70&fm=webp',
     imageName: 'phone-face-down-coffee-table.webp',
     imageDescription: 'Smartphone lying face down on a clean wooden tabletop beside a warm ceramic mug and open book.',
-    imageSizeKB: 46,
+    imageSizeKB: 49,
     imageCredit: 'Photo by Nathan Dumlao on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'A clean wooden table with a phone turned face down beside a ceramic coffee cup and a real paper book',
     seo: {
       metaTitle: 'Digital Detox: Does It Actually Work? Phone Screen Time Habits | VERVE',
-      metaDescription: 'Find out if a digital detox really works for young adults. Learn realistic phone friction tactics, overcome scroll fatigue, and start reading the full essay now.',
+      metaDescription: 'Find out if a digital detox really works for young adults. Learn realistic friction tactics, overcome scroll fatigue, and start reading the full essay now.',
       primaryKeyword: 'digital detox',
       secondaryKeywords: ['phone screen time habits', 'Gen Z attention span', 'social media break', 'intentional technology'],
       canonicalSlug: '/digital-detox-does-it-actually-work'
