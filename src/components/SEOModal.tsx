@@ -148,7 +148,7 @@ export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, o
                 <strong style={{ color: 'var(--text-main)' }}>Related Keywords (2):</strong>{' '}
                 {secondaryKws.map((kw, i) => (
                   <span key={i} style={{ backgroundColor: 'var(--bg-subtle)', padding: '2px 6px', borderRadius: '4px', marginRight: '6px', fontSize: '0.75rem' }}>
-                    #{i + 1} {kw}
+                    Related {i + 1}: {kw}
                   </span>
                 ))}
               </div>
