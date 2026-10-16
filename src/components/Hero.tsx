@@ -34,7 +34,8 @@ export const Hero: React.FC<HeroProps> = ({
               loading="eager"
               referrerPolicy="no-referrer"
               onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=70&fm=webp';
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=75&fm=webp';
               }}
             />
             <div className="hero-badge-kicker">

@@ -277,6 +277,32 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           </div>
         </aside>
 
+        {/* SEO Keywords Strategy Banner (1 Main + 2 Related) */}
+        <div style={{
+          margin: '1.25rem 0',
+          padding: '0.65rem 0.85rem',
+          backgroundColor: 'var(--bg-subtle)',
+          borderRadius: 'var(--radius-sm)',
+          border: '1px solid var(--border-subtle)',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: '0.5rem',
+          fontSize: '0.775rem'
+        }}>
+          <span style={{ fontWeight: 700, color: 'var(--text-main)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <Sparkles size={13} color="var(--accent-terracotta)" /> SEO Keywords:
+          </span>
+          <span style={{ backgroundColor: 'var(--accent-warm-tint)', color: 'var(--accent-terracotta)', padding: '2px 7px', borderRadius: '4px', fontWeight: 600 }}>
+            Main: {article.seo.primaryKeyword}
+          </span>
+          {article.seo.secondaryKeywords.slice(0, 2).map((kw, i) => (
+            <span key={i} style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-medium)', padding: '2px 7px', borderRadius: '4px', color: 'var(--text-secondary)' }}>
+              Related: {kw}
+            </span>
+          ))}
+        </div>
+
         {/* Long-form Article Body Prose */}
         <div className={`article-prose ${largeFont ? 'font-lg' : ''}`}>
           {/* Introduction Paragraphs with First-letter Drop Cap */}

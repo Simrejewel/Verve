@@ -22,6 +22,32 @@ export const AboutView: React.FC<AboutViewProps> = ({ onBack }) => {
         <p className="static-page-deck">
           VERVE is an independent digital magazine exploring modern youth culture, student life, career navigation, personal growth, and technology for the 16–28 generation.
         </p>
+        <div style={{
+          marginTop: '1.25rem',
+          display: 'inline-flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
+          fontSize: '0.75rem',
+          backgroundColor: 'var(--bg-subtle)',
+          padding: '0.35rem 0.85rem',
+          borderRadius: 'var(--radius-sm)',
+          border: '1px solid var(--border-subtle)'
+        }}>
+          <span style={{ fontWeight: 600, color: 'var(--text-main)', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Sparkles size={12} color="var(--accent-terracotta)" /> SEO Strategy:
+          </span>
+          <span style={{ backgroundColor: 'var(--accent-warm-tint)', color: 'var(--accent-terracotta)', padding: '1px 6px', borderRadius: '4px', fontWeight: 600 }}>
+            Main: independent youth editorial
+          </span>
+          <span style={{ backgroundColor: 'var(--bg-surface)', padding: '1px 6px', borderRadius: '4px', border: '1px solid var(--border-medium)', color: 'var(--text-secondary)' }}>
+            Related: Gen Z journalism manifesto
+          </span>
+          <span style={{ backgroundColor: 'var(--bg-surface)', padding: '1px 6px', borderRadius: '4px', border: '1px solid var(--border-medium)', color: 'var(--text-secondary)' }}>
+            Related: young adult culture publication
+          </span>
+        </div>
       </header>
 
       <div className="container-narrow">

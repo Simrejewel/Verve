@@ -39,7 +39,7 @@ export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, o
 
   // Title rules: 50-60 characters, contains primary keyword, ends with | VERVE
   const titleLength = title.length;
-  const isOptimalTitle = titleLength >= 45 && titleLength <= 65;
+  const isOptimalTitle = titleLength >= 45 && titleLength <= 60;
 
   const jsonLd = article ? {
     "@context": "https://schema.org",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Send, CheckCircle2, Mail, MapPin, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Send, CheckCircle2, Mail, MapPin, MessageSquare, Sparkles } from 'lucide-react';
 
 interface ContactViewProps {
   onBack: () => void;
@@ -40,6 +40,32 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onSuccessToast
         <p className="static-page-deck">
           We welcome original pitches from students, independent thinkers, and young writers across the globe.
         </p>
+        <div style={{
+          marginTop: '1.25rem',
+          display: 'inline-flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
+          fontSize: '0.75rem',
+          backgroundColor: 'var(--bg-subtle)',
+          padding: '0.35rem 0.85rem',
+          borderRadius: 'var(--radius-sm)',
+          border: '1px solid var(--border-subtle)'
+        }}>
+          <span style={{ fontWeight: 600, color: 'var(--text-main)', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Sparkles size={12} color="var(--accent-terracotta)" /> SEO Strategy:
+          </span>
+          <span style={{ backgroundColor: 'var(--accent-warm-tint)', color: 'var(--accent-terracotta)', padding: '1px 6px', borderRadius: '4px', fontWeight: 600 }}>
+            Main: pitch youth editorial
+          </span>
+          <span style={{ backgroundColor: 'var(--bg-surface)', padding: '1px 6px', borderRadius: '4px', border: '1px solid var(--border-medium)', color: 'var(--text-secondary)' }}>
+            Related: Gen Z contributor guidelines
+          </span>
+          <span style={{ backgroundColor: 'var(--bg-surface)', padding: '1px 6px', borderRadius: '4px', border: '1px solid var(--border-medium)', color: 'var(--text-secondary)' }}>
+            Related: magazine editorial submissions
+          </span>
+        </div>
       </header>
 
       <div className="contact-grid">

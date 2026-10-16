@@ -13,7 +13,6 @@ import { ContactView } from './components/ContactView';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { SEOModal } from './components/SEOModal';
 import { Footer } from './components/Footer';
-import { initGradientWaveText } from './utils/gradientWaveText';
 
 export default function App() {
   // Navigation & Page State
@@ -219,16 +218,6 @@ export default function App() {
     updateHeadMeta('twitter:title', metaTitle);
     updateHeadMeta('twitter:description', metaDescription);
   }, [pageSeoData]);
-
-  // Initialize Gradient Wave Text on the editorial quote element
-  useEffect(() => {
-    if (!activeArticle && selectedCategory === 'All' && !searchQuery.trim()) {
-      const cleanup = initGradientWaveText();
-      return () => {
-        if (cleanup) cleanup();
-      };
-    }
-  }, [activeArticle, selectedCategory, searchQuery]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -467,29 +456,6 @@ export default function App() {
                 </div>
               )}
             </div>
-
-            {/* Editorial Quote Breakout (Keeps rhythm engaging) */}
-            {selectedCategory === 'All' && !searchQuery.trim() && (
-              <section className="quote-breakout-section">
-                <div className="container">
-                  <blockquote
-                    className="editorial-quote"
-                    data-gradient-wave-text
-                    data-gradient-wave-scroll-start="top 90%"
-                    data-gradient-wave-scroll-end="center 40%"
-                    data-gradient-wave-color-start="rgba(140, 136, 128, 0.28)"
-                    data-gradient-wave-color-wave="#c44d34"
-                    data-gradient-wave-duration="0.4"
-                    data-gradient-wave-scrub="0.1"
-                  >
-                    “Adulthood does not arrive with an operating manual. You build your own by paying attention, staying curious, and making the next sensible move.”
-                  </blockquote>
-                  <cite className="quote-attribution">
-                    — From “Things I Wish I Knew at 18” · VERVE Issue 28
-                  </cite>
-                </div>
-              </section>
-            )}
 
             {/* Newsletter Subscription Component */}
             <div id="newsletter-section">

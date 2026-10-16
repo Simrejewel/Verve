@@ -26,10 +26,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Eliott Reyna on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young adult student sitting near a sunlit window reflecting with notebooks and warm tea',
     seo: {
-      metaTitle: 'Things I Wish I Knew at 18: Advice for Life, Money & College | VERVE',
+      metaTitle: 'Things I Wish I Knew at 18: Advice for Life | VERVE',
       metaDescription: 'Unpack what matters at 18: personal growth, career experiments, money, and friendships without pressure. Read the honest guide and take control of your 20s today.',
       primaryKeyword: 'things I wish I knew at 18',
-      secondaryKeywords: ['early adulthood advice', 'turning 18 tips', 'college transition', 'young adult life advice'],
+      secondaryKeywords: ['early adulthood advice', 'turning 18 tips'],
       canonicalSlug: '/things-i-wish-i-knew-at-18'
     },
     introduction: [
@@ -123,10 +123,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Andrew Neel on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young creative with laptop, notebook, and coffee planning quarterly goals with deep focus',
     seo: {
-      metaTitle: 'How to Stop Wasting Your 20s: Habit Guide & Productivity | VERVE',
+      metaTitle: 'How to Stop Wasting Your 20s: Habit Roadmap | VERVE',
       metaDescription: 'Stop wasting your 20s with endless scrolling and passive waiting. Discover practical habits, build a real portfolio, and start reading our full roadmap now.',
       primaryKeyword: 'stop wasting your 20s',
-      secondaryKeywords: ['twenties life advice', 'productivity for 20s', 'passive living', 'goal setting Gen Z'],
+      secondaryKeywords: ['twenties life advice', 'productivity habits in 20s'],
       canonicalSlug: '/how-to-stop-wasting-your-20s'
     },
     introduction: [
@@ -208,10 +208,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Priscilla Du Preez on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Diverse group of college students walking across a campus quad in bright natural sunlight',
     seo: {
-      metaTitle: 'College Student Reality in 2026: AI, Pressure & Campus Life | VERVE',
+      metaTitle: 'The Reality of Being a College Student in 2026 | VERVE',
       metaDescription: 'Navigate the reality of being a college student in 2026. Balance AI study tools, campus culture, internships, and mental wellbeing. Read the full story here.',
       primaryKeyword: 'college student in 2026',
-      secondaryKeywords: ['modern student life', 'AI in university', 'campus trends 2026', 'student mental health'],
+      secondaryKeywords: ['modern student life', 'AI in university'],
       canonicalSlug: '/the-reality-of-being-a-college-student-in-2026'
     },
     introduction: [
@@ -292,10 +292,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Alvaro Reyes on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young creator working on a laptop at a bright studio desk reviewing creative designs',
     seo: {
-      metaTitle: 'Build a Personal Brand as a Student: Step-by-Step Guide | VERVE',
+      metaTitle: 'Build a Personal Brand as a Student: Full Guide | VERVE',
       metaDescription: 'Learn to build a personal brand as a student without corporate cringe. Document real projects, gain credibility, and explore our step-by-step guide now.',
       primaryKeyword: 'personal brand as a student',
-      secondaryKeywords: ['student personal branding', 'LinkedIn for students', 'portfolio building', 'early career reputation'],
+      secondaryKeywords: ['student personal branding', 'early career reputation'],
       canonicalSlug: '/how-to-build-a-personal-brand-as-a-student'
     },
     introduction: [
@@ -376,10 +376,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Brooke Cagle on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young professionals collaborating around laptops with digital design layouts and coffee',
     seo: {
-      metaTitle: '10 High-Paying Skills for Young Adults & Students | VERVE',
+      metaTitle: '10 Skills That Can Actually Make You Money | VERVE',
       metaDescription: 'Discover 10 skills that can actually make you money as a student or young freelancer. Master writing, editing, and automation. Start reading our practical guide.',
       primaryKeyword: 'skills that make money',
-      secondaryKeywords: ['high income skills 20s', 'freelancing skills', 'monetizable student skills', 'remote digital work'],
+      secondaryKeywords: ['high income skills 20s', 'freelancing skills for Gen Z'],
       canonicalSlug: '/10-skills-that-can-actually-make-you-money'
     },
     introduction: [
@@ -462,10 +462,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Ayo Ogunseinde on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young person looking thoughtfully across the city skyline at dusk with gentle evening lights',
     seo: {
-      metaTitle: 'Why Everyone Feels Behind in Their 20s: Culture & Anxiety | VERVE',
+      metaTitle: 'Why Everyone Feels Behind in Their 20s: Culture | VERVE',
       metaDescription: 'See why everyone feels behind in their 20s and how social feeds distort progress. Reframe your personal milestones and read the full cultural analysis today.',
       primaryKeyword: 'feeling behind in your 20s',
-      secondaryKeywords: ['twenties anxiety', 'comparison culture', 'quarter life crisis', 'Gen Z mental health'],
+      secondaryKeywords: ['twenties anxiety', 'comparison culture'],
       canonicalSlug: '/why-everyone-feels-behind-in-their-20s'
     },
     introduction: [
@@ -546,10 +546,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Helena Lopes on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Group of young friends sharing laughter and good conversation around a wooden table',
     seo: {
-      metaTitle: 'How to Make Friends After College: The Adult Friendship Guide | VERVE',
+      metaTitle: 'How to Make Friends After College: Full Guide | VERVE',
       metaDescription: 'Master how to make friends after college when organic campus routines end. Discover recurring hobbies, low-pressure plans, and explore our complete guide today.',
       primaryKeyword: 'make friends after college',
-      secondaryKeywords: ['adult friendships', 'loneliness in 20s', 'community after university', 'social life Gen Z'],
+      secondaryKeywords: ['adult friendships', 'loneliness in 20s'],
       canonicalSlug: '/how-to-make-friends-after-college'
     },
     introduction: [
@@ -630,10 +630,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by Austin Distel on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'Young entrepreneurial team reviewing launch analytics and design mockups in a modern co-working studio',
     seo: {
-      metaTitle: 'Side Hustle Generation: Freelancing & Creative Income for Gen Z | VERVE',
+      metaTitle: 'The Rise of the Side Hustle Generation: Career | VERVE',
       metaDescription: 'Uncover the side hustle generation and how Gen Z builds financial optionality without burning out on extra work. Read the complete career breakdown right now.',
       primaryKeyword: 'side hustle generation',
-      secondaryKeywords: ['Gen Z side hustle', 'creator economy', 'freelancing young adults', 'economic optionality'],
+      secondaryKeywords: ['Gen Z side hustle', 'creator economy'],
       canonicalSlug: '/the-rise-of-the-side-hustle-generation'
     },
     introduction: [
@@ -706,17 +706,17 @@ export const ARTICLES: Article[] = [
     publishDate: 'September 6, 2026',
     isoDate: '2026-09-06',
     readingTime: '5 min read',
-    heroImage: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=70&fm=webp',
-    imageName: 'phone-face-down-coffee-table.webp',
-    imageDescription: 'Smartphone lying face down on a clean wooden tabletop beside a warm ceramic mug and open book.',
-    imageSizeKB: 49,
-    imageCredit: 'Photo by Nathan Dumlao on Unsplash (CC-licensed, compressed WebP)',
-    imageAlt: 'A clean wooden table with a phone turned face down beside a ceramic coffee cup and a real paper book',
+    heroImage: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=75&fm=webp',
+    imageName: 'analog-workspace-focus-journal.webp',
+    imageDescription: 'Serene minimalist desk with open paper notebook, pen, and coffee mug free from distracting screens.',
+    imageSizeKB: 46,
+    imageCredit: 'Photo by Andrew Neel on Unsplash (CC-licensed, compressed WebP)',
+    imageAlt: 'A peaceful minimalist desk with a paper notebook, coffee mug, and fountain pen free from digital devices',
     seo: {
-      metaTitle: 'Digital Detox: Does It Actually Work? Phone Screen Time Habits | VERVE',
-      metaDescription: 'Find out if a digital detox really works for young adults. Learn realistic friction tactics, overcome scroll fatigue, and start reading the full essay now.',
-      primaryKeyword: 'digital detox',
-      secondaryKeywords: ['phone screen time habits', 'Gen Z attention span', 'social media break', 'intentional technology'],
+      metaTitle: 'Digital Detox: Does It Actually Work for Gen Z? | VERVE',
+      metaDescription: 'Learn how a digital detox for young adults actually works. Add friction to phone habits, overcome scroll fatigue, and rebuild deep focus on VERVE right now.',
+      primaryKeyword: 'digital detox for young adults',
+      secondaryKeywords: ['phone screen time friction', 'overcoming scroll fatigue'],
       canonicalSlug: '/digital-detox-does-it-actually-work'
     },
     introduction: [
@@ -796,10 +796,10 @@ export const ARTICLES: Article[] = [
     imageCredit: 'Photo by John Schnobrich on Unsplash (CC-licensed, compressed WebP)',
     imageAlt: 'University student working on laptop with modern notes, coding editor, and textbook',
     seo: {
-      metaTitle: 'How AI Is Changing Student Life: Tools, Ethics & Study Guide | VERVE',
+      metaTitle: 'How AI Is Changing Student Life: Campus Guide | VERVE',
       metaDescription: 'See how AI is changing student life in 2026. Learn how to use smart study copilots without losing critical thinking. Read our complete campus report right now.',
       primaryKeyword: 'how AI is changing student life in 2026',
-      secondaryKeywords: ['AI in university', 'student AI workflow', 'future of learning', 'academic integrity AI'],
+      secondaryKeywords: ['AI in university', 'student AI workflow'],
       canonicalSlug: '/how-ai-is-changing-student-life'
     },
     introduction: [
