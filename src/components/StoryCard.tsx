@@ -98,6 +98,9 @@ export const StoryCard: React.FC<StoryCardProps> = ({
               src={article.author.avatar}
               alt={`Portrait of ${article.author.name}`}
               className="author-mini-avatar"
+              width={26}
+              height={26}
+              loading="lazy"
               referrerPolicy="no-referrer"
               onError={(e) => {
                 e.currentTarget.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=70&fm=webp';

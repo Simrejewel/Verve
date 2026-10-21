@@ -57,6 +57,9 @@ export const BookmarksDrawer: React.FC<BookmarksDrawerProps> = ({
                     src={article.heroImage}
                     alt={article.imageAlt || `${article.title} thumbnail`}
                     className="drawer-item-img"
+                    width={60}
+                    height={60}
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.currentTarget.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=70&fm=webp';

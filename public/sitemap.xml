@@ -8,6 +8,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://verve-magazine.com/lifestyle</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://verve-magazine.com/student-life</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>

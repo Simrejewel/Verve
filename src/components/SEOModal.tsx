@@ -264,6 +264,17 @@ export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, o
             </span>
           </div>
 
+          {/* Self-Referencing Canonical Tag */}
+          <div className="seo-meta-tag-item" style={{ borderLeft: '3px solid #16a34a' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span className="seo-meta-name">&lt;link rel="canonical"&gt; (Self-Referencing)</span>
+              <span style={{ fontSize: '0.7rem', color: '#16a34a', fontWeight: 700 }}>✓ Active</span>
+            </div>
+            <code style={{ display: 'block', marginTop: '0.3rem', fontSize: '0.75rem', color: 'var(--text-primary)', wordBreak: 'break-all' }}>
+              {fullUrl}
+            </code>
+          </div>
+
           {/* JSON-LD Structured Data */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>

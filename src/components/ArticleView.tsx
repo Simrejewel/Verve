@@ -477,6 +477,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               className="author-bio-avatar"
               width={72}
               height={72}
+              loading="lazy"
               referrerPolicy="no-referrer"
               onError={(e) => {
                 e.currentTarget.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=70&fm=webp';

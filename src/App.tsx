@@ -13,12 +13,14 @@ import { ContactView } from './components/ContactView';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { SEOModal } from './components/SEOModal';
 import { SearchConsoleModal } from './components/SearchConsoleModal';
+import { NotFoundView } from './components/NotFoundView';
 import { Footer } from './components/Footer';
 
 export default function App() {
   // Navigation & Page State
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<Category | 'All' | 'About' | 'Contact'>('All');
+  const [is404, setIs404] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
   // Theme State
@@ -96,16 +98,23 @@ export default function App() {
     }
 
     const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+
+    // 301 Redirect: In case /old-home is navigated in client routing
+    if (path === 'old-home') {
+      window.history.replaceState(null, '', '/');
+      return { article: null, category: 'All' as const, is404: false };
+    }
+
     if (!path) {
-      return { article: null, category: 'All' as const };
+      return { article: null, category: 'All' as const, is404: false };
     }
 
     if (path === 'about') {
-      return { article: null, category: 'About' as const };
+      return { article: null, category: 'About' as const, is404: false };
     }
 
     if (path === 'contact') {
-      return { article: null, category: 'Contact' as const };
+      return { article: null, category: 'Contact' as const, is404: false };
     }
 
     // Check if path is a category (e.g. /lifestyle, /student-life, etc.)
@@ -114,25 +123,27 @@ export default function App() {
       (c) => c.toLowerCase().replace(/\s+/g, '-') === catSegment.toLowerCase()
     );
     if (matchedCategory) {
-      return { article: null, category: matchedCategory };
+      return { article: null, category: matchedCategory, is404: false };
     }
 
     // Check if path is an article slug (e.g. /things-i-wish-i-knew-at-18)
     const articleSlug = path.startsWith('article/') ? path.replace('article/', '') : path;
     const matchedArticle = ARTICLES.find((a) => a.slug === articleSlug);
     if (matchedArticle) {
-      return { article: matchedArticle, category: matchedArticle.category };
+      return { article: matchedArticle, category: matchedArticle.category, is404: false };
     }
 
-    return { article: null, category: 'All' as const };
+    // Path is unrecognized: custom 404
+    return { article: null, category: 'All' as const, is404: true };
   };
 
   // Sync clean, simple, hashtag-free URLs
   useEffect(() => {
     const handleUrlChange = () => {
-      const { article, category } = parseLocation();
+      const { article, category, is404: routeIs404 } = parseLocation();
       setActiveArticle(article);
       setSelectedCategory(category);
+      setIs404(routeIs404);
     };
 
     handleUrlChange();
@@ -140,8 +151,34 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleUrlChange);
   }, []);
 
+  // Helper to dynamically update the self-referencing canonical tag on every page
+  const updateCanonicalLink = (canonicalSlug: string) => {
+    const formattedSlug = canonicalSlug === '/' ? '/' : canonicalSlug.startsWith('/') ? canonicalSlug : `/${canonicalSlug}`;
+    const canonicalUrl = `https://verve-magazine.com${formattedSlug === '/' ? '/' : formattedSlug}`;
+
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', canonicalUrl);
+    updateHeadMeta('og:url', canonicalUrl, true);
+  };
+
   // Comprehensive Page-Level SEO dictionary following checklist rules
   const pageSeoData = useMemo(() => {
+    if (is404) {
+      const currentPath = window.location.pathname || '/404';
+      return {
+        metaTitle: '404: Page Not Found | VERVE Magazine',
+        metaDescription: 'The requested page could not be found. Explore our latest guides and stories on student life, career, personal growth, culture, and tech on VERVE.',
+        primaryKeyword: 'page not found',
+        secondaryKeywords: ['VERVE magazine', '404 error'] as [string, string],
+        canonicalSlug: currentPath,
+      };
+    }
+
     if (activeArticle) {
       return {
         metaTitle: activeArticle.seo.metaTitle,
@@ -150,7 +187,7 @@ export default function App() {
         secondaryKeywords: [
           activeArticle.seo.secondaryKeywords[0] || 'youth culture',
           activeArticle.seo.secondaryKeywords[1] || 'student life',
-        ],
+        ] as [string, string],
         canonicalSlug: activeArticle.seo.canonicalSlug,
       };
     }
@@ -222,11 +259,11 @@ export default function App() {
     };
 
     return dict[selectedCategory] || dict.All;
-  }, [activeArticle, selectedCategory]);
+  }, [activeArticle, selectedCategory, is404]);
 
-  // Update document title, meta description, keywords, and OpenGraph metadata dynamically
+  // Update document title, meta description, keywords, OpenGraph metadata, and self-referencing canonical tag dynamically
   useEffect(() => {
-    const { metaTitle, metaDescription, primaryKeyword, secondaryKeywords } = pageSeoData;
+    const { metaTitle, metaDescription, primaryKeyword, secondaryKeywords, canonicalSlug } = pageSeoData;
 
     document.title = metaTitle;
     updateHeadMeta('description', metaDescription);
@@ -235,7 +272,17 @@ export default function App() {
     updateHeadMeta('og:description', metaDescription, true);
     updateHeadMeta('twitter:title', metaTitle);
     updateHeadMeta('twitter:description', metaDescription);
-  }, [pageSeoData]);
+
+    // Dynamic self-referencing canonical tag on every page
+    updateCanonicalLink(canonicalSlug);
+
+    // Dynamic robots directive: noindex on 404, index & follow on valid pages
+    if (is404) {
+      updateHeadMeta('robots', 'noindex, follow');
+    } else {
+      updateHeadMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    }
+  }, [pageSeoData, is404]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -266,18 +313,21 @@ export default function App() {
   const handleSelectArticle = (article: Article) => {
     const cleanUrl = `/${article.slug}`;
     navigateTo(cleanUrl);
+    setIs404(false);
     setActiveArticle(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToMagazine = () => {
     navigateTo('/');
+    setIs404(false);
     setActiveArticle(null);
     setSelectedCategory('All');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectCategory = (cat: Category | 'All' | 'About' | 'Contact') => {
+    setIs404(false);
     setSelectedCategory(cat);
     setActiveArticle(null);
     if (cat === 'About') {
@@ -358,8 +408,20 @@ export default function App() {
       />
 
       <main>
-        {/* VIEW 1: Individual Blog Article Page */}
-        {activeArticle ? (
+        {/* VIEW 0: Friendly Custom 404 Page */}
+        {is404 ? (
+          <NotFoundView
+            onBackToHome={handleBackToMagazine}
+            onSelectCategory={handleSelectCategory}
+            onSelectArticle={handleSelectArticle}
+            onOpenSearch={() => {
+              handleBackToMagazine();
+              setTimeout(() => document.getElementById('search-input-field')?.focus(), 150);
+            }}
+            articles={ARTICLES}
+          />
+        ) : activeArticle ? (
+          /* VIEW 1: Individual Blog Article Page */
           <ArticleView
             article={activeArticle}
             allArticles={ARTICLES}
