@@ -12,6 +12,7 @@ import { AboutView } from './components/AboutView';
 import { ContactView } from './components/ContactView';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { SEOModal } from './components/SEOModal';
+import { SearchConsoleModal } from './components/SearchConsoleModal';
 import { Footer } from './components/Footer';
 
 export default function App() {
@@ -39,7 +40,24 @@ export default function App() {
   // Modals & Drawers
   const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
   const [isSEOModalOpen, setIsSEOModalOpen] = useState(false);
+  const [isSearchConsoleOpen, setIsSearchConsoleOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Initialize and ensure Google Search Console verification meta tag is active in <head>
+  useEffect(() => {
+    const defaultToken = '5aI5cZsLi6avw2eQptFuhc-e0bJbj29ulljvDmnVCII';
+    const token = localStorage.getItem('verve_gsc_verification_token') || defaultToken;
+    let tag = document.querySelector('meta[name="google-site-verification"]') as HTMLMetaElement | null;
+    if (!tag) {
+      tag = document.createElement('meta');
+      tag.name = 'google-site-verification';
+      document.head.appendChild(tag);
+    }
+    tag.content = token;
+    if (!localStorage.getItem('verve_gsc_verification_token')) {
+      localStorage.setItem('verve_gsc_verification_token', token);
+    }
+  }, []);
 
   // Sync theme with document root
   useEffect(() => {
@@ -325,6 +343,7 @@ export default function App() {
           }
         }}
         onOpenSEO={() => setIsSEOModalOpen(true)}
+        onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
         theme={theme}
         onToggleTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')}
         onSubscribeClick={() => {
@@ -488,8 +507,16 @@ export default function App() {
           pageSeo={pageSeoData}
           onClose={() => setIsSEOModalOpen(false)}
           onCopyNotice={showToast}
+          onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
         />
       )}
+
+      {/* Google Search Console Integration Modal */}
+      <SearchConsoleModal
+        isOpen={isSearchConsoleOpen}
+        onClose={() => setIsSearchConsoleOpen(false)}
+        onNotify={showToast}
+      />
 
       {/* Toast Feedback Banner */}
       {toastMessage && (
@@ -503,6 +530,7 @@ export default function App() {
       <Footer
         onSelectCategory={handleSelectCategory}
         onOpenSEO={() => setIsSEOModalOpen(true)}
+        onOpenSearchConsole={() => setIsSearchConsoleOpen(true)}
         onShowToast={showToast}
         onOpenNewsletter={() => {
           const el = document.getElementById('newsletter-section');

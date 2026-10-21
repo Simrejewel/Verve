@@ -5,6 +5,7 @@ interface FooterProps {
   onSelectCategory: (cat: Category | 'All' | 'About' | 'Contact') => void;
   onOpenSEO: () => void;
   onOpenNewsletter: () => void;
+  onOpenSearchConsole?: () => void;
   onShowToast?: (msg: string) => void;
 }
 
@@ -12,6 +13,7 @@ export const Footer: React.FC<FooterProps> = ({
   onSelectCategory,
   onOpenSEO,
   onOpenNewsletter,
+  onOpenSearchConsole,
   onShowToast,
 }) => {
   return (
@@ -105,6 +107,21 @@ export const Footer: React.FC<FooterProps> = ({
                 >
                   SEO & Schema Data
                 </button>
+              </li>
+              {onOpenSearchConsole && (
+                <li>
+                  <button
+                    onClick={onOpenSearchConsole}
+                    style={{ textAlign: 'left', color: '#1a73e8', fontSize: '0.875rem', fontWeight: 600 }}
+                  >
+                    Google Search Console
+                  </button>
+                </li>
+              )}
+              <li>
+                <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
+                  XML Sitemap
+                </a>
               </li>
               <li>
                 <a href="/contact" onClick={(e) => { e.preventDefault(); onSelectCategory('Contact'); }}>

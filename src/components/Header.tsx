@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bookmark, Search, Moon, Sun, Menu, X, Code2 } from 'lucide-react';
+import { Bookmark, Search, Moon, Sun, Menu, X, Code2, Globe } from 'lucide-react';
 import { Category } from '../types';
 
 interface HeaderProps {
@@ -9,6 +9,7 @@ interface HeaderProps {
   onOpenBookmarks: () => void;
   onOpenSearch: () => void;
   onOpenSEO: () => void;
+  onOpenSearchConsole: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
   onSubscribeClick: () => void;
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBookmarks,
   onOpenSearch,
   onOpenSEO,
+  onOpenSearchConsole,
   theme,
   onToggleTheme,
   onSubscribeClick,
@@ -67,6 +69,16 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Code2 size={12} />
               <span>SEO Spec</span>
+            </button>
+            <span aria-hidden="true">·</span>
+            <button
+              onClick={onOpenSearchConsole}
+              className="masthead-link"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#1a73e8', fontWeight: 600 }}
+              title="Connect & Verify Google Search Console"
+            >
+              <Globe size={12} />
+              <span>Search Console</span>
             </button>
           </div>
         </div>
@@ -200,17 +212,29 @@ export const Header: React.FC<HeaderProps> = ({
               {item.label}
             </button>
           ))}
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem' }}>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenSEO();
-              }}
-              className="btn-outline"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              <Code2 size={16} /> SEO Tags
-            </button>
+          <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div style={{ display: 'flex', gap: '0.6rem' }}>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenSEO();
+                }}
+                className="btn-outline"
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                <Code2 size={16} /> SEO Tags
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenSearchConsole();
+                }}
+                className="btn-outline"
+                style={{ flex: 1, justifyContent: 'center', borderColor: '#4285F4', color: '#1a73e8' }}
+              >
+                <Globe size={16} /> Search Console
+              </button>
+            </div>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

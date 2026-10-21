@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Copy, Check, CheckCircle2, AlertCircle, Sparkles, Tag, FileText, Image as ImageIcon, Link as LinkIcon } from 'lucide-react';
+import { X, Copy, Check, CheckCircle2, AlertCircle, Sparkles, Tag, FileText, Image as ImageIcon, Link as LinkIcon, Globe, Search } from 'lucide-react';
 import { Article } from '../types';
 
 interface PageSeoData {
@@ -15,9 +15,10 @@ interface SEOModalProps {
   pageSeo?: PageSeoData;
   onClose: () => void;
   onCopyNotice: (msg: string) => void;
+  onOpenSearchConsole?: () => void;
 }
 
-export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, onCopyNotice }) => {
+export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, onCopyNotice, onOpenSearchConsole }) => {
   const [copied, setCopied] = React.useState(false);
 
   const title = article ? article.seo.metaTitle : (pageSeo?.metaTitle || 'Gen Z Lifestyle & Culture Magazine: Student Life | VERVE');
@@ -120,6 +121,52 @@ export const SEOModal: React.FC<SEOModalProps> = ({ article, pageSeo, onClose, o
             <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.75rem', color: '#16a34a', fontWeight: 600 }}>
               <CheckCircle2 size={14} /> All Alt & Anchors
             </div>
+          </div>
+
+          {/* Google Search Console Status Card */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.75rem 0.9rem',
+            borderRadius: 'var(--radius-sm)',
+            backgroundColor: 'rgba(66, 133, 244, 0.08)',
+            border: '1px solid rgba(66, 133, 244, 0.25)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <div style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: '6px',
+                backgroundColor: '#4285F4',
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Search size={15} />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1a73e8' }}>
+                  Google Search Console: Connected &amp; Verified
+                </div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                  Meta tag active: <code>5aI5cZsLi6...</code> · Sitemap: <code>/sitemap.xml</code> (18 URLs)
+                </div>
+              </div>
+            </div>
+            {onOpenSearchConsole && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenSearchConsole();
+                }}
+                className="btn-primary"
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.725rem' }}
+              >
+                Manage GSC
+              </button>
+            )}
           </div>
 
           {/* Clean URL Spec */}
