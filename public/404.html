@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VERVE Magazine</title>
+    <script>
+      // Single Page Application redirect fallback for static hosts
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      // Redirect back to root while preserving the intended path
+      window.location.replace('/' + (path && path !== '/' ? '#' + path : '') + search + hash);
+    </script>
+    <meta http-equiv="refresh" content="0;URL='/'" />
+  </head>
+  <body>
+    <p style="font-family: sans-serif; text-align: center; margin-top: 20vh; color: #555;">
+      Loading <a href="/" style="color: #c2593f; text-decoration: underline;">VERVE Magazine</a>...
+    </p>
+  </body>
+</html>

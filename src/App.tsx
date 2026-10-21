@@ -97,38 +97,41 @@ export default function App() {
       window.history.replaceState(null, '', cleanPath);
     }
 
-    const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, '').trim();
 
     // 301 Redirect: In case /old-home is navigated in client routing
-    if (path === 'old-home') {
+    if (path.toLowerCase() === 'old-home') {
       window.history.replaceState(null, '', '/');
       return { article: null, category: 'All' as const, is404: false };
     }
 
-    if (!path) {
+    // Root paths: empty, index.html, index, home
+    if (!path || path.toLowerCase() === 'index.html' || path.toLowerCase() === 'index' || path.toLowerCase() === 'home') {
       return { article: null, category: 'All' as const, is404: false };
     }
 
-    if (path === 'about') {
+    const lowerPath = path.toLowerCase();
+
+    if (lowerPath === 'about') {
       return { article: null, category: 'About' as const, is404: false };
     }
 
-    if (path === 'contact') {
+    if (lowerPath === 'contact') {
       return { article: null, category: 'Contact' as const, is404: false };
     }
 
-    // Check if path is a category (e.g. /lifestyle, /student-life, etc.)
-    const catSegment = path.startsWith('category/') ? path.replace('category/', '') : path;
+    // Check if path is a category (e.g. /lifestyle, /student-life, /category/lifestyle, etc.)
+    const catSegment = lowerPath.startsWith('category/') ? lowerPath.replace('category/', '') : lowerPath;
     const matchedCategory = CATEGORIES.find(
-      (c) => c.toLowerCase().replace(/\s+/g, '-') === catSegment.toLowerCase()
+      (c) => c.toLowerCase().replace(/\s+/g, '-') === catSegment
     );
     if (matchedCategory) {
       return { article: null, category: matchedCategory, is404: false };
     }
 
     // Check if path is an article slug (e.g. /things-i-wish-i-knew-at-18)
-    const articleSlug = path.startsWith('article/') ? path.replace('article/', '') : path;
-    const matchedArticle = ARTICLES.find((a) => a.slug === articleSlug);
+    const articleSlug = lowerPath.startsWith('article/') ? lowerPath.replace('article/', '') : lowerPath;
+    const matchedArticle = ARTICLES.find((a) => a.slug.toLowerCase() === articleSlug);
     if (matchedArticle) {
       return { article: matchedArticle, category: matchedArticle.category, is404: false };
     }
